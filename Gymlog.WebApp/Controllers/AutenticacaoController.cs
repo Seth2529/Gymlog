@@ -153,7 +153,7 @@ namespace Gymlog.WebApp.Controllers
             catch (System.Exception erro)
             {
                 TempData["MensagemErro"] = $"Ops, houve um erro em editar o cadastro, tente novamente, erro: {erro.Message}";
-                return RedirectToAction("Index");
+                return RedirectToAction("Editar");
             }
         }
     }

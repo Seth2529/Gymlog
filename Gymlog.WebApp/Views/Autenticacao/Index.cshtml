@@ -5,24 +5,51 @@
 <style>
     body {
         margin: 0;
+        background: #3B3838;
     }
 
-    .main-index {
-        margin-top: 15px;
+    .alert-index {
         margin-left: 185px;
         margin-right: 185px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 30px 35px;
+    }
+    .main-index {
+        width: 100vw;
+        height: 75vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
     }
 
-    .card-index > h1 {
-        font-weight: 800;
-        margin: 0;
+    .card-index {
+        margin-left: 185px;
+        margin-right: 185px;
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 30px 35px;
+        background: #FFFFFF;
+        border-radius: 20px;
+        box-shadow: 0px 10px 40px #FFFFFF;
     }
+
+        .card-index > h1 {
+            color: #3B3838;
+            font-weight: 800;
+            margin: 0;
+        }
 
 
 
 </style>
 
-<div class="main-index">
+<div class="alert-index">
         @if (TempData["MensagemSucesso"] != null)
         {
             <div class="alert alert-success" role="alert">
@@ -37,9 +64,9 @@
                 @TempData["MensagemErro"]
             </div>
         }
+</div>
 
-    <br>
-
+<div class="main-index">
     <div class="card-index">
     <h1 class="display-4">Listagem de pessoas</h1>
         <table class="table table-striped" id="tabela-pessoas">

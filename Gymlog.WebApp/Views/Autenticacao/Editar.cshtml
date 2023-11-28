@@ -7,6 +7,10 @@
         background: #212529;
     }
 
+    .alert-index {
+        margin-left: 185px;
+        margin-right: 185px;
+    }
     .main-edit {
         width: 100vw;
         height: 100vh;
@@ -88,11 +92,25 @@
 
 <form asp-action="EditarPessoa" asp-controller="Autenticacao" method="post">
     <input type="hidden" asp-for=PessoaID/>
-    <input type="hidden" asp-for="CPF">
     <input type="hidden" asp-for="Senha">
     <input type="hidden" asp-for="PerfilID">
     
-
+    <div class="alert-index">
+        @if (TempData["MensagemSucesso"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="btn btn-danger rounded-pill btn-sm close-alert" aria-label="Close">x</button>
+                @TempData["MensagemSucesso"]
+            </div>
+        }
+        @if (TempData["MensagemErro"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="btn btn-danger rounded-pill btn-sm close-alert" aria-label="Close">x</button>
+                @TempData["MensagemErro"]
+            </div>
+        }
+    </div>
     <div class="main-edit">
             <div class="card-edit">
                 <h1>Edite suas informaçoes</h1>
@@ -115,6 +133,12 @@
                 <label class="control-label">Data de Nascimento</label>
                 <input asp-for="DataNascimento" type="date" class="form-control" id="datanasc" placeholder="dd/mm/aaaa" >
                 @Html.ValidationMessageFor(x => x.DataNascimento)
+            </div>
+            <div class="text-field">
+                <label class="control-label">CPF</label>
+                <input asp-for="CPF" class="form-control" id="cpf" placeholder="Digite Seu CPF">
+                @Html.ValidationMessageFor(x => x.CPF, "", new { @Class="text-danger"})
+
             </div>
             
 @*            <div class="text-field">
@@ -151,6 +175,9 @@
             var val = document.getElementById('zoption_')
             val.options[val.selectedIndex].value
         </script>
+    <script>
+        $('#cpf').mask('000.000.000-00', { reverse: true });
+    </script>
 </form>
 
 @*    var val = document.getElementById('zoption_')
