@@ -1,0 +1,157 @@
+﻿@using Gymlog.Dominio.Entidade;
+@model Pessoa
+
+<style>
+    body {
+        margin: 0;
+        background: #212529;
+    }
+
+    .main-login {
+        width: 100vw;
+        height: 100vh;
+        background: #212529;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .left-login {
+        width: 50vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+        .left-login > h1 {
+            color: #ffffff;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .left-login > h3 {
+            color: #FFFFFF;
+            font-weight: 100;
+            margin: 10px;
+        }
+
+    .left-login-image {
+        width: 35vw;
+    }
+
+
+    .right-login {
+        width: 50vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card-login {
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 30px 35px;
+        background: #3B3838;
+        border-radius: 20px;
+        box-shadow: 0px 10px 40px #242424;
+    }
+
+        .card-login > h1 {
+            color: #FFFFFF;
+            font-weight: 800;
+            margin: 0;
+        }
+
+    .text-field {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 0px 0px;
+    }
+
+        .text-field > input {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            background: #FFFFFF;
+            color: #00000056;
+            font-size: 12pt;
+            box-shadow: 0px 10px 40px #00000056;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .text-field > label {
+            color: #f0ffffde;
+            margin-bottom: 10px;
+        }
+
+    .textfield > input::placeholder {
+        color: #f0ffff94;
+    }
+
+    .btn-login {
+        width: 100%;
+        padding: 16px 0px;
+        margin: 25px;
+        border: none;
+        border-radius: 8px;
+        outline: none;
+        font-weight: 800;
+        letter-spacing: 1px;
+        color: #ffffff;
+        background: #1e90ff;
+        cursor: pointer;
+        box-shadow: 0px 10px 40px -12px #092b4d;
+    }
+
+</style>
+<form asp-action="LoginPessoa" asp-controller="Autenticacao" method="GET">
+    <div class="main-login">
+        <div class="left-login">
+            <h1>Digite o seu login!</h1>
+            <img src="https://images.pexels.com/photos/5327534/pexels-photo-5327534.jpeg" alt="gym" class="left-login-image">
+        </div>
+        <div class="right-login">
+            <div class="card-login">
+                <h1>Login</h1>
+                <div class="text-field">
+                    <label class="control-label">CPF</label>
+                    <input asp-for="CPF" class="form-control" id="cpf" placeholder="Digite Seu CPF" required>
+                </div>
+                <div class="text-field">
+                    <label for="senha" class="control-label">Senha</label>
+                    <input asp-for="Senha" class="form-control" type="password" placeholder="Senha" required>
+                </div>               
+                <button class="btn-login">Login</button>
+
+                <label class="control-label text-light">
+                    Não tem uma conta?
+                    <a asp-area="" asp-controller="Autenticacao" asp-action="Cadastro"
+                                              class="link-danger">Registre-se!</a>
+                </label>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon="{&quot;rayId&quot;:&quot;80547d2a3def521b&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2023.8.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous" style="display: none !important;"></script>
+
+    <script>
+        $('#cpf').mask('000.000.000-00', { reverse: true });
+    </script>
+
+</form>
+

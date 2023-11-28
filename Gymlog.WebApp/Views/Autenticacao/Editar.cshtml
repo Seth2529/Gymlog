@@ -1,0 +1,141 @@
+﻿@using Gymlog.WebApp.Models;
+@model PessoaViewModel
+
+<style>
+    body {
+        margin: 0;
+        background: #212529;
+    }
+
+    .main-edit {
+        width: 100vw;
+        height: 100vh;
+        background: #212529;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card-edit {
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 30px 35px;
+        background: #3B3838;
+        border-radius: 20px;
+        box-shadow: 0px 10px 40px #242424;
+    }
+
+        .card-edit > h1 {
+            color: #FFFFFF;
+            font-weight: 800;
+            margin: 0;
+        }
+
+    .text-field {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 0px 0px;
+    }
+
+        .text-field > input {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            background: #FFFFFF;
+            color: #00000056;
+            font-size: 12pt;
+            box-shadow: 0px 10px 40px #00000056;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .text-field > label {
+            color: #f0ffffde;
+            margin-bottom: 10px;
+        }
+
+    .textfield > input::placeholder {
+        color: #f0ffff94;
+    }
+
+    .btn-edit {
+        width: 100%;
+        padding: 16px 0px;
+        margin-top: 15px;
+        border: none;
+        border-radius: 8px;
+        outline: none;
+        font-weight: 800;
+        letter-spacing: 1px;
+        color: #ffffff;
+        cursor: pointer;
+        box-shadow: 0px 10px 40px -12px #092b4d;
+    }
+
+    .error {
+        color: red;
+    }
+
+</style>
+
+
+<form asp-action="EditarPessoa" asp-controller="Autenticacao" method="post">
+    <input type="hidden" asp-for=PessoaID/>
+    <input type="hidden" asp-for="CPF">
+    <input type="hidden" asp-for="Senha">
+    <input type="hidden" asp-for="PerfilID">
+    
+
+    <div class="main-edit">
+            <div class="card-edit">
+                <h1>Edite suas informaçoes</h1>
+            <div class="text-field">
+                <label class="control-label">Nome</label>
+                <input asp-for="Nome" class="form-control" placeholder="Seu nome" >
+                @Html.ValidationMessageFor(x => x.Nome)
+            </div>
+            <div class="text-field">
+                <label class="control-label">Email</label>
+                <input asp-for="Email" class="form-control" placeholder="Seu melhor email" >
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+            <div class="text-field">
+                <label class="control-label">Cidade</label>
+                <input asp-for="Cidade" class="form-control" placeholder="Sua cidade" >
+                @Html.ValidationMessageFor(x => x.Cidade)
+            </div>
+            <div class="text-field">
+                <label class="control-label">Data de Nascimento</label>
+                <input asp-for="DataNascimento" type="date" class="form-control" id="datanasc" placeholder="dd/mm/aaaa" >
+                @Html.ValidationMessageFor(x => x.DataNascimento)
+            </div>
+
+
+
+                <button class="btn-edit btn btn-primary">Editar</button>
+                <button class="btn-edit btn btn-secondary" asp-controller="Autenticacao" asp-action="Index">Voltar</button>
+
+            </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon="{&quot;rayId&quot;:&quot;80547d2a3def521b&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2023.8.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous" style="display: none !important;"></script>
+
+</form>
+
+@*    var val = document.getElementById('zoption_')
+    val.options[val.selectedIndex].value
+    
+    mvc ddd
+    
+    *@
