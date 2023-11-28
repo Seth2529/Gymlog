@@ -33,5 +33,7 @@ namespace Gymlog.WebApp.Models
 
         [Range(1,2)]
         public int PerfilID { get; set; }
+
+        public TipoPerfil PerfilID { get; set; }
     }
 }
