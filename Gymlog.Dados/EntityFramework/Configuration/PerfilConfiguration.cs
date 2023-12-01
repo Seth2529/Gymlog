@@ -23,7 +23,7 @@ namespace Gymlog.Dados.EntityFramework.Configuration
                 .HasColumnType("int");
 
             builder
-                .Property(e => e.PerfilEnum)
+                .Property(e => e.NomePerfil)
                 .HasColumnName("NomePerfil")
                 .HasColumnType("varchar(100)");
 

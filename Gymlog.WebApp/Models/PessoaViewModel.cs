@@ -1,5 +1,6 @@
 ﻿using Gymlog.Dominio.Entidade;
 using Gymlog.WebApp.Models.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -19,9 +20,9 @@ namespace Gymlog.WebApp.Models
         [Required(ErrorMessage = "Digite sua cidade")]
         public string Cidade { get; set; }
 
-        [Display(Name = "Data de Nascimento")]
         [Required(ErrorMessage = "Coloque a sua data de nascimento")]
         [DisplayFormat(NullDisplayText = "Coloque a sua data de nascimento")]
+        [IdadeValidation(90, ErrorMessage = "A idade máxima permitida é de 90 anos.")]
         public DateTime? DataNascimento { get; set; }
 
         [Required(ErrorMessage = "Digite seu CPF")]
@@ -31,9 +32,8 @@ namespace Gymlog.WebApp.Models
         [Required(ErrorMessage = "Digite sua senha")]
         public string Senha { get; set; }
 
-        [Range(1,2)]
-        public int PerfilID { get; set; }
 
-        //public TipoPerfil PerfilID { get; set; }
+        [Required(ErrorMessage = "Digite seu perfil")]
+        public int PerfilID { get; set; }
     }
 }

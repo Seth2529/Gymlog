@@ -9,6 +9,6 @@ namespace Gymlog.Dominio.Entidade
     public class Perfil
     {
         public int PerfilID { get; set; }
-        public int PerfilEnum { get; set; }
+        public string NomePerfil { get; set; }
     }
 }

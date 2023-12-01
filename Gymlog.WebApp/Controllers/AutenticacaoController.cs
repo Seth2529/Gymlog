@@ -4,6 +4,7 @@ using Gymlog.Dominio.IService;
 using Gymlog.Dominio.ValueObjects;
 using Gymlog.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 
 namespace Gymlog.WebApp.Controllers
@@ -11,6 +12,8 @@ namespace Gymlog.WebApp.Controllers
     public class AutenticacaoController : Controller
     {
         private IPessoaCadastroService _pessoaCadastroService;
+
+        private Contexto db = new Contexto();
         public AutenticacaoController(IPessoaCadastroService pessoaCadastroService)
         {
             _pessoaCadastroService = pessoaCadastroService;
@@ -23,7 +26,8 @@ namespace Gymlog.WebApp.Controllers
         }
         public IActionResult Cadastro()
         {
-            return View(new NovaPessoaViewModel());
+            ViewBag.Perfil = db.Perfil.ToList();
+            return View(new PessoaViewModel());
         }
         public IActionResult Login()
         {
@@ -66,28 +70,29 @@ namespace Gymlog.WebApp.Controllers
             return View();
         }
 
-        [ValidateAntiForgeryToken]
-        public IActionResult CadastrarPessoa(NovaPessoaViewModel pessoa)
+        public IActionResult CadastrarPessoa(PessoaViewModel pessoa)
         {
+
             try
             {
                 if (ModelState.IsValid)
                 {
                     Pessoa cad = new()
                     {
-                        Nome = pessoa.Nome,
+                         Nome = pessoa.Nome,
                         Email = pessoa.Email,
                         Cidade = pessoa.Cidade,
                         DataNascimento = pessoa.DataNascimento,
                         CPF = pessoa.CPF,
-                        Senha = pessoa.Senha
+                        Senha = pessoa.Senha,
+                        PerfilID = pessoa.PerfilID
                     };
+                    ViewBag.Perfil = db.Perfil.ToList();
                     _pessoaCadastroService.CadastrarPessoa(cad);
                     TempData["MensagemSucesso"] = "Pessoa cadastrada com sucesso";
                     return RedirectToAction("Cadastro");
                 }
-
-                //throw new ArgumentException();
+                ViewBag.Perfil = db.Perfil.ToList();
                 return View("Cadastro", pessoa);
             }
             catch (Exception erro)

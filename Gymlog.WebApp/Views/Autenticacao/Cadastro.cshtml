@@ -1,5 +1,5 @@
 ﻿@using Gymlog.WebApp.Models;
-@model NovaPessoaViewModel
+@model PessoaViewModel
 
 <style>
     body {
@@ -168,17 +168,24 @@
                     <input asp-for="DataNascimento" type="date" class="form-control" id="datanasc" placeholder="dd/mm/aaaa">
                     @Html.ValidationMessageFor(x => x.DataNascimento, "", new { @Class="text-danger"})
                 </div>
-                 <div class="text-field">
+                <div class="text-field">
                     <label class="control-label">CPF</label>
                     <input asp-for="CPF" class="form-control" id="cpf" placeholder="Digite Seu CPF">
                     @Html.ValidationMessageFor(x => x.CPF, "", new { @Class="text-danger"})
-
                 </div>
                 <div class="text-field">
-                    <label for="senha"class="control-label">Senha</label>
+                    <label class="control-label" for="Perfil">Perfil</label>
+                    @Html.DropDownListFor(x => x.PerfilID, new SelectList(ViewBag.Perfil, "PerfilID", "NomePerfil", Model.PerfilID), "-- Selecione --",new { @class = "form-select"})
+                    @Html.ValidationMessageFor(x => x.PerfilID, "Digite seu perfil", new { @Class="text-danger"})
+                </div>
+                <div class="text-field">
+                    <label for="senha" class="control-label">Senha</label>
                     <input asp-for="Senha" id="password" class="form-control" type="password" placeholder="Senha">
                     @Html.ValidationMessageFor(x => x.Senha, "", new { @Class="text-danger"})
                 </div>
+
+ 
+
 
                 <button class="btn-signin">Cadastrar</button>
 
@@ -199,6 +206,10 @@
 
     <script>
         $('#cpf').mask('000.000.000-00', { reverse: true });
+
+        var e = document.getElementById("ddlViewBy");
+        var value = e.value;
+        var text = e.options[e.selectedIndex].text;
     </script>
 
 </form>

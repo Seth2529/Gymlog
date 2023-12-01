@@ -30,7 +30,6 @@ namespace Gymlog.Servico.Servico
 
             var id = _pessoaCadastroRepository.EncontrarProximoIDDisponivel();
             pessoa.PessoaID = id;
-            pessoa.PerfilID = 2;
             _pessoaCadastroRepository.CadastrarPessoa(pessoa);
         }
         public void EditarPessoa(Pessoa pessoa)

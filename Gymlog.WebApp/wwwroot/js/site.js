@@ -20,3 +20,10 @@ setTimeout(function () {
     })
 }, 5000
 );
+
+
+var spans = document.querySelectorAll('.text-danger.field-validation-valid');
+
+spans.forEach(function (span) {
+    span.style.display = 'none';
+});

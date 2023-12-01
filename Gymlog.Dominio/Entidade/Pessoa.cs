@@ -17,7 +17,7 @@ namespace Gymlog.Dominio.Entidade
         public string CPF { get; set; }
         public string Senha { get; set; }
         public int PerfilID { get; set; }
-        public virtual Pessoa Perfil { get; set; }
+        public virtual Perfil Perfil { get; set; }
 
     }       
 }

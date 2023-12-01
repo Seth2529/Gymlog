@@ -105,18 +105,7 @@
                             @item.CPF
                         </td>
                         <td>
-                            @Html.DropDownList("<option>", new SelectListItem[]{
-                                new SelectListItem(){ 
-                                    Value = "1",
-                                    Text = "1 - Admin", 
-                                    Selected = @item.PerfilID == 1 
-                                }, new SelectListItem(){ 
-                                    Value = "2", 
-                                    Text = "2 - Default", 
-                                    Selected = @item.PerfilID == 2 
-                                }
-                            }, "Tipo Perfil", new {});
-                            
+                            @item.PerfilID
                         </td>
 
                         <td>

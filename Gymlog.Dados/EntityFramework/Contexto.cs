@@ -27,13 +27,13 @@ namespace Gymlog.Dados.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 #if DEBUG
-            optionsBuilder.UseSqlServer(@"Data source = 10.107.176.41, 1434; 
+            optionsBuilder.UseSqlServer(@"Data source = 201.62.57.93,1434; 
                                     Database = BD045201; 
                                     User ID = RA045201; 
                                     Password = 045201;
                                     TrustServerCertificate = True;");
 #else
-            optionsBuilder.UseSqlServer(@"Data source = 201.62.57.93,1434; 
+            optionsBuilder.UseSqlServer(@"Data source = 10.107.176.41, 1434; 
                                     Database = BD045201; 
                                     User ID = RA045201; 
                                     Password = 045201;
