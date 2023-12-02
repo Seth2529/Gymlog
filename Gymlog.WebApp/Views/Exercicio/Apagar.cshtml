@@ -1,5 +1,5 @@
 ﻿@using Gymlog.Dominio.ValueObjects;
-@model Pessoa
+@model Exercicio
 
 <style>
     body {
@@ -56,13 +56,13 @@
 </style>
 
 <form>
-    <input type="hidden" asp-for=PessoaID />
+    <input type="hidden" asp-for=ExercicioID />
 
     <div class="main-delete">
         <div class="card-delete">
-            <h1>Deseja realmente apagar (@Model.Nome)?</h1>
-            <button class="btn-delete btn btn-danger" asp-controller="Autenticacao" asp-action="ApagarPessoa">Apagar</button>
-            <button class="btn-delete btn btn-primary" asp-controller="Autenticacao" asp-action="Index">Voltar</button>
+            <h1>Deseja realmente apagar (@Model.NomeExercicio)?</h1>
+            <button class="btn-delete btn btn-danger" asp-controller="Exercicio" asp-action="ApagarExercicio">Apagar</button>
+            <button class="btn-delete btn btn-primary" asp-controller="Exercicio" asp-action="Index">Voltar</button>
 
         </div>
     </div>

@@ -1,4 +1,9 @@
-﻿@using Gymlog.WebApp.Models;
+﻿@{
+    Layout = "_LayoutDeslogado";
+    ViewData["Title"] = "Home";
+}
+
+@using Gymlog.WebApp.Models;
 @model PessoaViewModel
 
 <style>
@@ -191,7 +196,7 @@
 
                 <label class="control-label text-light">
                     Já tem uma conta?
-                    <a asp-area="" asp-controller="Autenticacao" asp-action="Login"
+                    <a asp-area="" asp-controller="Login" asp-action="Index"
                        class="link-danger">Faça o login!</a>
                 </label>
             </div>

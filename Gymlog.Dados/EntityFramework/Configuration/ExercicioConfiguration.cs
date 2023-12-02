@@ -26,10 +26,6 @@ namespace Gymlog.Dados.EntityFramework.Configuration
                 .Property(e => e.NomeExercicio)
                 .HasColumnName("NomeExercicio")
                 .HasColumnType("varchar(100)");
-            builder
-                .Property(e => e.TipoRepeticao)
-                .HasColumnName("TipoRepeticao")
-                .HasColumnType("varchar(50)");
 
             builder
                 .HasOne(e => e.TipoRepeticao)
@@ -40,7 +36,7 @@ namespace Gymlog.Dados.EntityFramework.Configuration
                 .Property(e => e.SerieExercicio)
                 .HasColumnName("SerieExercicio")
                 .HasColumnType("int");
-
+ 
         }
     }
 }

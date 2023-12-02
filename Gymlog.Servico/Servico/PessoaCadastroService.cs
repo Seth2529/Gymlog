@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Gymlog.Dominio.Entidade;
 using Gymlog.Dominio.Interface;
 using Gymlog.Dominio.IService;
+using Gymlog.Dominio.ValueObjects;
 
 namespace Gymlog.Servico.Servico
 {
@@ -50,5 +50,9 @@ namespace Gymlog.Servico.Servico
             return _pessoaCadastroRepository.GetOneById(pessoaID);
         }
 
+        public Pessoa ObterPorCPF(string cpf)
+        {
+            return _pessoaCadastroRepository.ObterPorCPF(cpf);
+        }
     }
 }

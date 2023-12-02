@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gymlog.Dominio.Entidade;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace Gymlog.Dominio.ValueObjects
     {
         public int MensalidadeID { get; set; }
         public int MetodoPagamentoID { get; set; }
-        public string TipoMetodoPagamento { get; set; }
+        public virtual MetodoPagamento MetodoPagamentoTipo { get; set; }
         public bool Ativo { get; set; }
     }
 }

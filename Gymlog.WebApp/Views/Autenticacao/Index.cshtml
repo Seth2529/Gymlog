@@ -1,4 +1,5 @@
-﻿@using Gymlog.Dominio.Entidade;
+﻿@using Gymlog.Dominio.ValueObjects;
+@using Gymlog.WebApp.Helper;
 
 @model IEnumerable<Pessoa>
 
@@ -69,7 +70,7 @@
 <div class="main-index">
     <div class="card-index">
     <h1 class="display-4">Listagem de pessoas</h1>
-        <table class="table table-striped" id="tabela-pessoas">
+        <table class="table table-striped" id="tabela-geral">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -79,6 +80,7 @@
                     <th>Data de Nascimento</th>
                     <th>CPF</th>
                     <th>Perfil</th>
+                    <th>Senha</th>
                     <th></th>
                 </tr>
             </thead>
@@ -105,7 +107,10 @@
                             @item.CPF
                         </td>
                         <td>
-                            @item.PerfilID
+                            @PerfilHelper.GetPerfilDescricao(item.PerfilID)
+                        </td>
+                        <td>
+                            @item.Senha
                         </td>
 
                         <td>

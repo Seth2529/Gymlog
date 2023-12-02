@@ -14,7 +14,6 @@ namespace Gymlog.Dados.EntityFramework.Configuration
         public void Configure(EntityTypeBuilder<Ficha> builder)
         {
             builder.ToTable("Ficha");
-
             builder.HasKey(f => f.FichaID);
 
             builder.Property(f => f.FichaID).
@@ -28,9 +27,9 @@ namespace Gymlog.Dados.EntityFramework.Configuration
                 .HasColumnName("Observacoes")
                 .HasColumnType("varchar(200)");
 
-            //builder.HasMany(f => f.Exercicio)
-            //    .WithOne(e => e.Ficha)
-            //    .HasForeignKey(e => e.FichaID);
+            builder.HasMany(f => f.Exercicio)
+                .WithOne()
+                .HasForeignKey(e => e.ExercicioID);
         }
     }
 }

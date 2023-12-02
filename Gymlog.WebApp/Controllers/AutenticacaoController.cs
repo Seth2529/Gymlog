@@ -1,5 +1,4 @@
 ﻿using Gymlog.Dados.EntityFramework;
-using Gymlog.Dominio.Entidade;
 using Gymlog.Dominio.IService;
 using Gymlog.Dominio.ValueObjects;
 using Gymlog.WebApp.Models;
@@ -29,11 +28,7 @@ namespace Gymlog.WebApp.Controllers
             ViewBag.Perfil = db.Perfil.ToList();
             return View(new PessoaViewModel());
         }
-        public IActionResult Login()
-        {
-            var cad = new Pessoa();
-            return View(cad);
-        }
+
         [HttpGet]
         public IActionResult Editar(int pessoaID)
         {
@@ -64,12 +59,6 @@ namespace Gymlog.WebApp.Controllers
             return View(editarpessoaModel);
         }
 
-
-        public IActionResult Autenticar(UsuarioViewModel entidade)
-        {
-            return View();
-        }
-
         public IActionResult CadastrarPessoa(PessoaViewModel pessoa)
         {
 
@@ -79,7 +68,7 @@ namespace Gymlog.WebApp.Controllers
                 {
                     Pessoa cad = new()
                     {
-                         Nome = pessoa.Nome,
+                        Nome = pessoa.Nome,
                         Email = pessoa.Email,
                         Cidade = pessoa.Cidade,
                         DataNascimento = pessoa.DataNascimento,

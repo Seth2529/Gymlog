@@ -140,23 +140,6 @@
                 @Html.ValidationMessageFor(x => x.CPF, "", new { @Class="text-danger"})
 
             </div>
-            
-@*            <div class="text-field">
-                @Html.EnumDropDownList("")
-                @Html.DropDownList("<option>", new SelectListItem[]{
-                new SelectListItem(){
-                Value = "1",
-                Text = "1 - Admin",
-                Selected = @item.PerfilID == 1
-                }, new SelectListItem(){
-                Value = "2",
-                Text = "2 - Default",
-                Selected = @item.PerfilID == 2
-                }
-                }, "Tipo Perfil", new {});
-            </div>*@
-
-
 
                 <button class="btn-edit btn btn-primary">Editar</button>
                 <button class="btn-edit btn btn-secondary" asp-controller="Autenticacao" asp-action="Index">Voltar</button>
@@ -180,9 +163,4 @@
     </script>
 </form>
 
-@*    var val = document.getElementById('zoption_')
-    val.options[val.selectedIndex].value
-    
-    mvc ddd
-    
-    *@
+@*mvc ddd*@

@@ -1,10 +1,20 @@
-﻿@using Gymlog.Dominio.Entidade;
-@model Pessoa
+﻿@{
+    Layout = "_LayoutDeslogado";
+    ViewData["Title"] = "Home";
+}
+
+@using Gymlog.WebApp.Models;
+@model LoginViewModel
 
 <style>
     body {
         margin: 0;
         background: #212529;
+    }
+
+    .alert-index {
+        margin-left: 185px;
+        margin-right: 185px;
     }
 
     .main-login {
@@ -115,10 +125,21 @@
     }
 
 </style>
-<form asp-action="LoginPessoa" asp-controller="Autenticacao" method="GET">
+<form asp-action="Entrar" asp-controller="Login" method="post">
+    <div class="alert-index">
+        @if (TempData["MensagemErro"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="btn btn-danger rounded-pill btn-sm close-alert" aria-label="Close">x</button>
+                @TempData["MensagemErro"]
+            </div>
+        }
+    </div>
+
     <div class="main-login">
         <div class="left-login">
-            <h1>Digite o seu login!</h1>
+            <h1>Digite o seu login</h1>
+            </br>
             <img src="https://images.pexels.com/photos/5327534/pexels-photo-5327534.jpeg" alt="gym" class="left-login-image">
         </div>
         <div class="right-login">
@@ -126,18 +147,20 @@
                 <h1>Login</h1>
                 <div class="text-field">
                     <label class="control-label">CPF</label>
-                    <input asp-for="CPF" class="form-control" id="cpf" placeholder="Digite Seu CPF" required>
+                    <input asp-for="CPF" class="form-control" id="cpf" placeholder="Digite Seu CPF">
+                    @Html.ValidationMessageFor(x => x.CPF, "", new { @Class="text-danger"})
                 </div>
                 <div class="text-field">
                     <label for="senha" class="control-label">Senha</label>
-                    <input asp-for="Senha" class="form-control" type="password" placeholder="Senha" required>
-                </div>               
+                    <input asp-for="Senha" id="password" class="form-control" type="password" placeholder="Senha">
+                    @Html.ValidationMessageFor(x => x.Senha, "", new { @Class="text-danger"})
+                </div>
                 <button class="btn-login">Login</button>
 
                 <label class="control-label text-light">
                     Não tem uma conta?
                     <a asp-area="" asp-controller="Autenticacao" asp-action="Cadastro"
-                                              class="link-danger">Registre-se!</a>
+                       class="link-danger">Registre-se!</a>
                 </label>
             </div>
         </div>

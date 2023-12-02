@@ -10,8 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<Contexto>();
+
 builder.Services.AddScoped<IPessoaCadastroRepository, PessoaCadastroRepository>();
 builder.Services.AddScoped<IPessoaCadastroService, PessoaCadastroService>();
+
+builder.Services.AddScoped<IExercicioRepository, ExercicioRepository>();
+builder.Services.AddScoped<IExercicioService, ExercicioService>();
 
 builder.Services.AddSession();
 
@@ -36,6 +40,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();

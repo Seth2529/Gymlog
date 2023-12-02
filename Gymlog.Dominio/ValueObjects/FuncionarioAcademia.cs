@@ -11,14 +11,19 @@ namespace Gymlog.Dominio.ValueObjects
     {
         public int FuncionarioAcademiaID {  get; set; }
         public int PessoaID { get; set; }
-        public Pessoa Pessoa { get; set; }
+        public virtual Pessoa Pessoa { get; set; }
+
         public int MensalidadeID { get; set; }
-        public string Mensalidade { get; set;}
+        public virtual Mensalidade Mensalidade { get; set;}
+
         public int FichaID { get; set; }
+        public virtual Ficha Ficha { get; set; }
+
         public int HorarioID { get; set; }
+        public virtual Horario Horario { get; set; }
 
         public int PerfilID { get; set; }
-        public string Perfil { get; set; }
+        public virtual Perfil Perfil { get; set; }
 
     }
 }

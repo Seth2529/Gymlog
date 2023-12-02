@@ -1,4 +1,4 @@
-﻿using Gymlog.Dominio.Entidade;
+﻿using Gymlog.Dominio.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +15,6 @@ namespace Gymlog.Dominio.IService
         public Pessoa GetOneById(int pessoaID);
         public IEnumerable<Pessoa> GetAll();
         public bool CPFJaExiste(string cpf);
+        public Pessoa ObterPorCPF(string cpf);
     }
 }

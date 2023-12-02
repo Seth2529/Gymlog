@@ -1,4 +1,4 @@
-﻿using Gymlog.Dominio.Entidade;
+﻿using Gymlog.Dominio.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;

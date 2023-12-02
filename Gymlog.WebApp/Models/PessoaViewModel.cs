@@ -1,7 +1,4 @@
-﻿using Gymlog.Dominio.Entidade;
-using Gymlog.WebApp.Models.Validation;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
+﻿using Gymlog.WebApp.Models.Validation;
 using System.ComponentModel.DataAnnotations;
 
 namespace Gymlog.WebApp.Models

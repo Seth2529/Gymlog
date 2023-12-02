@@ -4,8 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Gymlog.Dominio.Entidade;
 
-namespace Gymlog.Dominio.Entidade
+namespace Gymlog.Dominio.ValueObjects
 {
     public class Pessoa
     {
@@ -19,5 +20,10 @@ namespace Gymlog.Dominio.Entidade
         public int PerfilID { get; set; }
         public virtual Perfil Perfil { get; set; }
 
-    }       
+
+        public bool SenhaValida(string senha)
+        {
+            return Senha == senha;
+        }
+    }
 }

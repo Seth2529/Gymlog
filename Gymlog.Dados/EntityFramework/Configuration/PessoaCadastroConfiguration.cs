@@ -1,4 +1,4 @@
-﻿using Gymlog.Dominio.Entidade;
+﻿using Gymlog.Dominio.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;

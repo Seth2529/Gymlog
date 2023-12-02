@@ -1,6 +1,6 @@
 ﻿using Gymlog.Dados.EntityFramework;
-using Gymlog.Dominio.Entidade;
 using Gymlog.Dominio.Interface;
+using Gymlog.Dominio.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

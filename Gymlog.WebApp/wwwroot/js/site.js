@@ -4,7 +4,7 @@
 // Write your JavaScript code.
 
 
-let table = new DataTable('#tabela-pessoas', {
+let table = new DataTable('#tabela-geral', {
     language: {
         url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json',
     },

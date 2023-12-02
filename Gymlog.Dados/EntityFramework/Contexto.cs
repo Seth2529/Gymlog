@@ -13,12 +13,17 @@ namespace Gymlog.Dados.EntityFramework
 {
     public class Contexto : DbContext
     {
+        public DbSet<Ficha> Ficha { get; set; }
         public DbSet<Exercicio> Exercicio { get; set; }
-        //public DbSet<RepeticaoExercicio> RepeticaoExercicio { get; set; }
+        public DbSet<RepeticaoExercicio> RepeticaoExercicio { get; set; }
         public DbSet<Pessoa> Pessoa { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<FuncionarioAcademia> FuncionarioAcademia { get; set; }
         public DbSet<Perfil> Perfil { get; set; }
+        public DbSet<Horario> Horario { get; set; }
+        public DbSet<MetodoPagamento> MetodosPagamento { get; set; }
+        public DbSet<Mensalidade> Mensalidade { get; set; }
+
 
         public Contexto(): base()
         {
@@ -44,17 +49,16 @@ namespace Gymlog.Dados.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Exercicio>()
-            //    .HasOne(e => e.TipoRepeticaoID)
-            //    .WithMany()
-            //    .HasForeignKey(e => e.TipoRepeticaoID);
-            //modelBuilder.ApplyConfiguration(new ExercicioConfiguration());
-            //modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
-            //modelBuilder.ApplyConfiguration(new FuncionarioAcademiaConfiguration());
+            modelBuilder.ApplyConfiguration(new FichaConfiguration());
+            modelBuilder.ApplyConfiguration(new MensalidadeConfiguration());
+            modelBuilder.ApplyConfiguration(new ExercicioConfiguration());
+            modelBuilder.ApplyConfiguration(new HorarioConfiguration());
+            modelBuilder.ApplyConfiguration(new RepeticaoExercicioConfiguration());
             modelBuilder.ApplyConfiguration(new PessoaCadastroConfiguration());
+            modelBuilder.ApplyConfiguration(new FuncionarioAcademiaConfiguration());
+            modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
             modelBuilder.ApplyConfiguration(new PerfilConfiguration());
+            modelBuilder.ApplyConfiguration(new MetodoPagamentoConfiguration());
         }
-
-
     }
 }

@@ -1,61 +1,145 @@
-﻿//using Gymlog.Dominio.ValueObjects;
-//using Microsoft.AspNetCore.Mvc;
-//using Gymlog.Dados.EntityFramework;
+﻿using Gymlog.Dados.EntityFramework;
+using Gymlog.Dominio.IService;
+using Gymlog.Dominio.ValueObjects;
+using Gymlog.WebApp.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 
-//namespace Gymlog.WebApp.Controllers
-//{
-//    public class ExercicioController : Controller
-//    {
-//        private Contexto Db = new Contexto();
+namespace Gymlog.WebApp.Controllers
+{
+    public class ExercicioController : Controller
+    {
+        private IExercicioService _exercicioService;
 
-//        public IActionResult Index()
-//        {
-//            var resultado = Db.Exercicio
-//                .ToList();
+        private Contexto db = new Contexto();
+        public ExercicioController(IExercicioService exercicioService)
+        {
+            _exercicioService = exercicioService;
+        }
+        public IActionResult Index()
+        {
+            var resultado = _exercicioService.GetAll();
 
-//            return View(resultado);
-//        }
+            return View(resultado);
+        }
+        public IActionResult Inserir()
+        {
+            ViewBag.RepeticaoExercicio = db.RepeticaoExercicio.ToList();
+            return View(new ExercicioViewModel());
+        }
 
-//        public IActionResult Inserir()
-//        {
-//            var ent = new Exercicio();
-//            return View(ent);
-//        }
+        [HttpGet]
+        public IActionResult Editar(int ExercicioID)
+        {
+            if (ExercicioID == null || ExercicioID == 0)
+            {
+                throw new Exception("Não há dados desse exercicio");
+            }
 
-//        [HttpPost]
-//        public IActionResult InserirConfirmar(Exercicio ent)
-//        {
-//            int novoID = EncontrarProximoIDDisponivel();
-//            ent.ExercicioID = novoID;
-//            Db.Exercicio.Add(ent);
-//            Db.SaveChanges();
-//            return RedirectToAction("Index");
-//        }
+            Exercicio editarExercicio = _exercicioService.GetOneById(ExercicioID);
 
-//        private int EncontrarProximoIDDisponivel()
-//        {
-//            var idsExistentes = Db.Pessoa.Select(p => p.PessoaID).ToList();
-//            int proximoID = 1;
+            if (editarExercicio == null)
+            {
+                return NotFound();
+            }
 
-//            while (idsExistentes.Contains(proximoID))
-//            {
-//                proximoID++;
-//            }
+            ExercicioViewModel editarExercicioModel = new ExercicioViewModel
+            {
+                ExercicioID = editarExercicio.ExercicioID,
+                NomeExercicio = editarExercicio.NomeExercicio,
+                TipoRepeticaoID = editarExercicio.TipoRepeticaoID,
+                SerieExercicio = editarExercicio.SerieExercicio
+            };
+            ViewBag.RepeticaoExercicio = db.RepeticaoExercicio.ToList();
 
-//            return proximoID;
-//        }
-//        public IActionResult Excluir(int exercicioId)
-//        {
-//            var objeto = Db
-//                .Exercicio
-//                .First(f => f.ExercicioID == exercicioId);
+            return View(editarExercicioModel);
+        }
 
-//            Db.Exercicio.Remove(objeto);
-//            Db.SaveChanges();
+        public IActionResult CadastrarExercicio(ExercicioViewModel exercicio)
+        {
 
-//            return RedirectToAction("Index");
-//        }
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Exercicio exerc = new()
+                    {
+                        NomeExercicio = exercicio.NomeExercicio,
+                        TipoRepeticaoID = exercicio.TipoRepeticaoID,
+                        SerieExercicio = exercicio.SerieExercicio
+                    };
+                    ViewBag.RepeticaoExercicio = db.RepeticaoExercicio.ToList();
+                    _exercicioService.CadastrarExercicio(exerc);
+                    TempData["MensagemSucesso"] = "Exercicio cadastrado com sucesso";
+                    return RedirectToAction("Inserir");
+                }
+                ViewBag.RepeticaoExercicio = db.RepeticaoExercicio.ToList();
+                return View("Inserir", exercicio);
+            }
+            catch (Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, houve um erro ao cadastrar o exercicio, tente novamente. Erro: {erro.Message}";
+                return RedirectToAction("Inserir", exercicio);
+            }
+        }
 
-//    }
 
-//}
+
+        public IActionResult Apagar(int ExercicioID)
+        {
+            Exercicio apagarExercicio = _exercicioService.GetOneById(ExercicioID);
+            return View(apagarExercicio);
+        }
+        public IActionResult ApagarExercicio(int ExercicioID)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _exercicioService.ApagarExercicio(ExercicioID);
+                    TempData["MensagemSucesso"] = "Exercicio apagado com sucesso";
+                    return RedirectToAction("Index");
+                }
+
+                return View(Inserir);
+            }
+            catch (System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, houve um erro em apagar o exercicio, tente novamente, erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
+
+
+        }
+        [HttpPost]
+        public IActionResult EditarExercicio(ExercicioViewModel exercicio)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Exercicio exerc = new()
+                    {
+                        ExercicioID = exercicio.ExercicioID,
+                        NomeExercicio = exercicio.NomeExercicio,
+                        TipoRepeticaoID = exercicio.TipoRepeticaoID,
+                        SerieExercicio = exercicio.SerieExercicio
+                    };
+                    ViewBag.RepeticaoExercicio = db.RepeticaoExercicio.ToList();
+                    _exercicioService.EditarExercicio(exerc);
+                    TempData["MensagemSucesso"] = "Cadastro editado com sucesso";
+                    return RedirectToAction("Index");
+
+                }
+                ViewBag.RepeticaoExercicio = db.RepeticaoExercicio.ToList();
+                return View("Editar", exercicio);
+            }
+            catch (System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, houve um erro em editar o cadastro, tente novamente, erro: {erro.Message}";
+                return RedirectToAction("Editar");
+            }
+        }
+    }
+}

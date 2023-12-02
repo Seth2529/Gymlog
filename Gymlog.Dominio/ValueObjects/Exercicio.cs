@@ -13,7 +13,8 @@ namespace Gymlog.Dominio.ValueObjects
         public int ExercicioID { get; set; }
         public string NomeExercicio { get; set; }
         public int TipoRepeticaoID { get; set; }
-        public virtual Exercicio TipoRepeticao { get; set; }
+        public virtual RepeticaoExercicio TipoRepeticao { get; set; }
         public int SerieExercicio { get; set; }
     }
 }
+
