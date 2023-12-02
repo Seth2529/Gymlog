@@ -49,8 +49,6 @@ namespace Gymlog.Dados.EntityFramework
             //    .WithMany()
             //    .HasForeignKey(e => e.TipoRepeticaoID);
             //modelBuilder.ApplyConfiguration(new ExercicioConfiguration());
-            //modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
-            //modelBuilder.ApplyConfiguration(new FuncionarioAcademiaConfiguration());
             modelBuilder.ApplyConfiguration(new PessoaCadastroConfiguration());
             modelBuilder.ApplyConfiguration(new PerfilConfiguration());
         }
