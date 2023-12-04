@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Gymlog.Dominio.Entidade;
+using Gymlog.Dominio.Helper;
 
 namespace Gymlog.Dominio.ValueObjects
 {
@@ -23,7 +24,14 @@ namespace Gymlog.Dominio.ValueObjects
 
         public bool SenhaValida(string senha)
         {
-            return Senha == senha;
+
+            return Senha == senha.GerarHash();
         }
+
+        public void SetSenhaHash()
+        {
+            Senha = Senha.GerarHash();
+        }
+
     }
 }

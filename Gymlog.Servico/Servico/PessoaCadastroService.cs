@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Gymlog.Dominio.Interface;
+using Gymlog.Dominio.IRepository;
 using Gymlog.Dominio.IService;
 using Gymlog.Dominio.ValueObjects;
 
@@ -30,6 +30,7 @@ namespace Gymlog.Servico.Servico
 
             var id = _pessoaCadastroRepository.EncontrarProximoIDDisponivel();
             pessoa.PessoaID = id;
+            pessoa.SetSenhaHash();
             _pessoaCadastroRepository.CadastrarPessoa(pessoa);
         }
         public void EditarPessoa(Pessoa pessoa)

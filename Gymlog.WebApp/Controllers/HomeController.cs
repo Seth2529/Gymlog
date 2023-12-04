@@ -1,9 +1,11 @@
 ﻿using Gymlog.Webapp.Models;
+using Gymlog.WebApp.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace Gymlog.Webapp.Controllers
 {
+    [PaginaUsuarioLogado]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

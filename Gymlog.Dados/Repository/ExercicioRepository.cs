@@ -1,5 +1,5 @@
 ﻿using Gymlog.Dados.EntityFramework;
-using Gymlog.Dominio.Interface;
+using Gymlog.Dominio.IRepository;
 using Gymlog.Dominio.ValueObjects;
 using System;
 using System.Collections.Generic;

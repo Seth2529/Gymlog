@@ -20,16 +20,22 @@ namespace Gymlog.Dados.EntityFramework.Configuration
                 HasColumnName("FichaID").
                 HasColumnType("int");
 
+            builder.Property(f => f.NomeFicha)
+                .HasColumnName("NomeFicha")
+                .HasColumnType("varchar(100)");
+
             builder.Property(f => f.QuantidadeSemanas)
-                .HasColumnName("QuantidadeSemanas");
+                .HasColumnName("QuantidadeSemanas")
+                .HasColumnType("int");
 
             builder.Property(f => f.Observacoes)
                 .HasColumnName("Observacoes")
                 .HasColumnType("varchar(200)");
 
-            builder.HasMany(f => f.Exercicio)
-                .WithOne()
-                .HasForeignKey(e => e.ExercicioID);
+            builder
+                .HasOne(e => e.Pessoa)
+                .WithMany()
+                .HasForeignKey(e => e.PessoaID);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Gymlog.Dominio.Interface;
+﻿using Gymlog.Dominio.IRepository;
 using Gymlog.Dominio.IService;
 using Gymlog.Dominio.ValueObjects;
 using System;

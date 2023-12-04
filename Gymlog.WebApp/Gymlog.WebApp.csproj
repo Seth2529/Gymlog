@@ -22,6 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Gymlog.CrossCutting\Gymlog.CrossCutting.csproj" />
     <ProjectReference Include="..\Gymlog.Dados\Gymlog.Dados.csproj" />
     <ProjectReference Include="..\Gymlog.Dominio\Gymlog.Dominio.csproj" />

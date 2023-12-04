@@ -1,6 +1,7 @@
 ﻿using Gymlog.Dados.EntityFramework;
 using Gymlog.Dominio.IService;
 using Gymlog.Dominio.ValueObjects;
+using Gymlog.WebApp.Filters;
 using Gymlog.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,13 +11,15 @@ namespace Gymlog.WebApp.Controllers
 {
     public class AutenticacaoController : Controller
     {
-        private IPessoaCadastroService _pessoaCadastroService;
+        private readonly IPessoaCadastroService _pessoaCadastroService;
 
-        private Contexto db = new Contexto();
+        private readonly Contexto db = new Contexto();
         public AutenticacaoController(IPessoaCadastroService pessoaCadastroService)
         {
             _pessoaCadastroService = pessoaCadastroService;
         }
+
+        [PaginaSomenteFuncionario]
         public IActionResult Index()
         {
             var resultado = _pessoaCadastroService.GetAll();
@@ -30,6 +33,7 @@ namespace Gymlog.WebApp.Controllers
         }
 
         [HttpGet]
+        [PaginaSomenteFuncionario]
         public IActionResult Editar(int pessoaID)
         {
             if (pessoaID == null || pessoaID == 0)
@@ -92,7 +96,7 @@ namespace Gymlog.WebApp.Controllers
         }
 
 
-
+        [PaginaSomenteFuncionario]
         public IActionResult Apagar(int pessoaID)
         {
             Pessoa apagarpessoa = _pessoaCadastroService.GetOneById(pessoaID);

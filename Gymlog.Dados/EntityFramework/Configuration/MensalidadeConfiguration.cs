@@ -28,6 +28,11 @@ namespace Gymlog.Dados.EntityFramework.Configuration
                 .HasForeignKey(e => e.MetodoPagamentoID);
 
             builder
+                .HasOne(e => e.Pessoa)
+                .WithMany()
+                .HasForeignKey(e => e.PessoaID);
+
+            builder
                 .Property(e => e.Ativo)
                 .HasColumnName("Ativo")
                 .HasColumnType("bit");

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gymlog.Dominio.Interface
+namespace Gymlog.Dominio.IRepository
 {
     public interface IExercicioRepository
     {

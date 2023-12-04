@@ -1,6 +1,9 @@
 ﻿using Gymlog.Dados.EntityFramework;
 using Gymlog.Dominio.IService;
 using Gymlog.Dominio.ValueObjects;
+using Gymlog.Servico.Servico;
+using Gymlog.WebApp.Filters;
+using Gymlog.WebApp.Helper.Sessão;
 using Gymlog.WebApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,19 +12,28 @@ namespace Gymlog.WebApp.Controllers
 {
     public class LoginController : Controller
     {
-
-        private IPessoaCadastroService _pessoaCadastroService;
-        public LoginController(IPessoaCadastroService pessoaCadastroService)
+        private readonly IPessoaCadastroService _pessoaCadastroService;
+        private readonly ISessao _sessao;
+        public LoginController(IPessoaCadastroService pessoaCadastroService, ISessao sessao)
         {
             _pessoaCadastroService = pessoaCadastroService;
+            _sessao = sessao;
         }
 
         public IActionResult Index()
         {
+            if(_sessao.BuscarSessaoUsuario() != null) return RedirectToAction("Index","Home");
+
             return View();
         }
 
-        [HttpPost]
+        public IActionResult SairUsuario()
+        {
+            _sessao.RemoverSessaoUsuario();
+
+            return RedirectToAction("Index", "Login");
+        }
+      [HttpPost]
         public IActionResult Entrar(LoginViewModel loginModel)
         {
             try
@@ -33,14 +45,16 @@ namespace Gymlog.WebApp.Controllers
                     {
                         if (pessoa.SenhaValida(loginModel.Senha))
                         {
+                            _sessao.CriarSessaoUsuario(pessoa);
                             return RedirectToAction("Index", "Home");
                         }
                         TempData["MensagemErro"] = $"Senha inválida, tente novamente";
                     }
 
-                    TempData["MensagemErro"] = $"CPF e/ou senha inválidos, por favor, tente novamente";
+                    TempData["MensagemErro"] = $"CPF e/ou senha inválidos,Por favor, tente novamente";
+
                 }
-                return View("Index");
+                return View();
             }
             catch (Exception erro)
             {
@@ -49,63 +63,5 @@ namespace Gymlog.WebApp.Controllers
             }
         }
 
-
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: LoginController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: LoginController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: LoginController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: LoginController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

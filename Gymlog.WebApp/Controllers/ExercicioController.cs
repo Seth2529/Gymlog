@@ -1,6 +1,7 @@
 ﻿using Gymlog.Dados.EntityFramework;
 using Gymlog.Dominio.IService;
 using Gymlog.Dominio.ValueObjects;
+using Gymlog.WebApp.Filters;
 using Gymlog.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,11 +9,12 @@ using System;
 
 namespace Gymlog.WebApp.Controllers
 {
+    [PaginaSomenteFuncionario]
     public class ExercicioController : Controller
     {
-        private IExercicioService _exercicioService;
+        private readonly IExercicioService _exercicioService;
 
-        private Contexto db = new Contexto();
+        private readonly Contexto db = new Contexto();
         public ExercicioController(IExercicioService exercicioService)
         {
             _exercicioService = exercicioService;

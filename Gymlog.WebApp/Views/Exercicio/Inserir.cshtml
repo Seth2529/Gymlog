@@ -7,6 +7,15 @@
         background: #212529;
     }
 
+    .alert-index {
+        margin-left: 185px;
+        margin-right: 185px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 30px 35px;
+    }
+
     .main-signin {
         width: 100vw;
         height: 100vh;
@@ -108,8 +117,10 @@
         outline: none;
         font-weight: 800;
         letter-spacing: 1px;
+        color: #ffffff;
+        background: #30a444;
         cursor: pointer;
-        box-shadow: 0px 10px 40px -12px #092b4d;
+        box-shadow: 0px 10px 40px -12px #2c7a3a;
     }
 
 </style>
@@ -141,20 +152,20 @@
                 <h1>Exercício</h1>
                 <div class="text-field">
                     <label class="control-label">Nome Exercício</label>
-                    <input asp-for="NomeExercicio" class="form-control" placeholder="Digite nome do exercicio">
+                    <input asp-for="NomeExercicio" class="form-control" placeholder="Digite o nome do exercicio">
                     @Html.ValidationMessageFor(x => x.NomeExercicio, "", new { @Class="text-danger"})
                 </div>
                 <div class="text-field">
                     <label class="control-label">Serie Exercicio</label>
-                    <input asp-for="SerieExercicio" class="form-control" />
-                    @Html.ValidationMessageFor(x => x.SerieExercicio, "", new { @Class="text-danger"})
+                    <input asp-for="SerieExercicio" class="form-control" value=" placeholder="Digite a serie do exercicio" />
+                    @Html.ValidationMessageFor(x => x.SerieExercicio, "Digite a quantidade de séries", new { @Class="text-danger"})
                 </div>
                 <div class="text-field">
                     <label class="control-label" for="Perfil">Tipo de repetição</label>
                     @Html.DropDownListFor(x => x.TipoRepeticaoID, new SelectList(ViewBag.RepeticaoExercicio, "TipoRepeticaoID", "TipoRepeticao", Model.TipoRepeticaoID), "-- Selecione --",new { @class = "form-select"})
                     @Html.ValidationMessageFor(x => x.TipoRepeticaoID, "Escolha o tipo de repetição", new { @Class="text-danger"})
                 </div>
-                <button type="submit" name="btn-inserir" class="btn-inserir btn btn-success"> Inserir </button>
+                <button class="btn-inserir btn btn-outline-success"> Inserir </button>
             </div>
         </div>
     </div>
