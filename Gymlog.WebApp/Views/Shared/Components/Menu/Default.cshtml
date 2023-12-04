@@ -16,6 +16,11 @@
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Horario" asp-action="Index">Horários</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-action="Apagar" asp-controller="Autenticacao" asp-route-pessoaID="@Model.PessoaID">ApagarUsuario</a>
+        </li>
+
+       
 
         @if(Model.PerfilID == 1)
         {
