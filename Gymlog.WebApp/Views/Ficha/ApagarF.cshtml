@@ -1,0 +1,77 @@
+﻿@using Gymlog.Dominio.ValueObjects;
+@model Ficha
+
+<style>
+    body {
+        margin: 0;
+        background: #212529;
+    }
+
+    .main-delete {
+        width: 100vw;
+        height: 100vh;
+        background: #212529;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card-delete {
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 30px 35px;
+        background: #3B3838;
+        border-radius: 20px;
+        box-shadow: 0px 10px 40px #242424;
+    }
+
+        .card-delete > h1 {
+            color: #FFFFFF;
+            font-weight: 800;
+            margin: 0;
+        }
+
+
+    .btn-delete {
+        width: 100%;
+        padding: 16px 0px;
+        margin-top: 15px;
+        border: none;
+        border-radius: 8px;
+        outline: none;
+        font-weight: 800;
+        letter-spacing: 1px;
+        color: #ffffff;
+        cursor: pointer;
+        box-shadow: 0px 10px 40px -12px #092b4d;
+    }
+
+    .error {
+        color: red;
+    }
+
+</style>
+
+<form>
+    <input type="hidden" asp-for=FichaID />
+
+    <div class="main-delete">
+        <div class="card-delete">
+            <h1>Deseja realmente apagar (@Model.NomeFicha)?</h1>
+            <button class="btn-delete btn btn-danger" asp-controller="Ficha" asp-action="ApagarFicha">Apagar</button>
+            <button class="btn-delete btn btn-primary" asp-controller="Ficha" asp-action="Index">Voltar</button>
+
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon="{&quot;rayId&quot;:&quot;80547d2a3def521b&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2023.8.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous" style="display: none !important;"></script>
+
+
+</form>

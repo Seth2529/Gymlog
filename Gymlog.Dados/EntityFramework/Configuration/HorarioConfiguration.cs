@@ -36,10 +36,6 @@ namespace Gymlog.Dados.EntityFramework.Configuration
                 .HasColumnName("HorarioPadrao")
                 .HasColumnType("varchar(20)");
 
-            builder
-                .Property(e => e.HorarioSabado)
-                .HasColumnName("HorarioSabado")
-                .HasColumnType("varchar(20)");
 
         }
     }

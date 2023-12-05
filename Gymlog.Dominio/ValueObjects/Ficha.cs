@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Gymlog.Dominio.ValueObjects;
 
-namespace Gymlog.Dominio.Entidade
+namespace Gymlog.Dominio.ValueObjects
 {
     public class Ficha
     {

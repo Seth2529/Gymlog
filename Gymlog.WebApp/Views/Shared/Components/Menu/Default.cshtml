@@ -13,19 +13,34 @@
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Início</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Horario" asp-action="Index">Horários</a>
-        </li>
+@* 
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-action="Apagar" asp-controller="Autenticacao" asp-route-pessoaID="@Model.PessoaID">ApagarUsuario</a>
-        </li>
-
+        </li> *@
+        @if (Model.PerfilID == 2)
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Horario" asp-action="Details">Horários</a>
+            </li>
+        }
        
 
         @if(Model.PerfilID == 1)
         {
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Autenticacao" asp-action="Index">Lista Pessoas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Ficha" asp-action="CadastroF">Adicionar ficha pessoal</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Ficha" asp-action="Index">Fichas pessoais</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Horario" asp-action="Index">Horários</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Horario" asp-action="CadastroH">Cadastrar horário</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Exercicio" asp-action="Index">Exercícios</a>

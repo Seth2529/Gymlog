@@ -1,5 +1,5 @@
 ﻿@using Gymlog.WebApp.Models;
-@model ExercicioViewModel
+@model FichaViewModel
 
 <style>
     body {
@@ -114,16 +114,16 @@
         font-weight: 800;
         letter-spacing: 1px;
         color: #ffffff;
-        background: #30a444;
+        background: #1e90ff;
         cursor: pointer;
-        box-shadow: 0px 10px 40px -12px #2c7a3a;
+        box-shadow: 0px 10px 40px -12px #092b4d;
     }
 
     .error {
         color: red;
     }
 </style>
-<form asp-action="CadastrarExercicio" asp-controller="Exercicio" method="POST">
+<form asp-action="CadastrarFicha" asp-controller="Ficha" method="POST">
     <div class="alert-index">
         @if (TempData["MensagemSucesso"] != null)
         {
@@ -142,29 +142,34 @@
     </div>
     <div class="main-signin">
         <div class="left-signin">
-            <h1>Inserir Exercício</h1>
-            <h3>Descreva as informações do exercício</h3>
-            <img src="https://sabawellness.com.br/wp-content/uploads/2022/03/AdobeStock_SABA-WELLNESS-ACADEMIA-4-scaled.jpeg" alt="gym" class="left-signin-image">
+            <h1>Cadastre a ficha</h1>
+            <h3>Descreva as informações da ficha pessoal</h3>
+            <img src="https://t3.ftcdn.net/jpg/03/96/56/54/240_F_396565468_olNuwKrppY2ovXhDsBNaJfClaArRTIM8.jpg" alt="gym" class="left-signin-image">
         </div>
         <div class="right-signin">
             <div class="card-signin">
-                <h1>Exercício</h1>
+                <h1>Ficha de exercicio</h1>
                 <div class="text-field">
-                    <label class="control-label">Nome Exercício</label>
-                    <input asp-for="NomeExercicio" class="form-control" placeholder="Digite o nome do exercicio">
-                    @Html.ValidationMessageFor(x => x.NomeExercicio, "", new { @Class="text-danger"})
+                    <label class="control-label">Nome Ficha</label>
+                    <input asp-for="NomeFicha" class="form-control" placeholder="Digite o nome da ficha">
+                    @Html.ValidationMessageFor(x => x.NomeFicha, "", new { @Class="text-danger"})
                 </div>
                 <div class="text-field">
-                    <label class="control-label">Serie Exercicio</label>
-                    <input asp-for="SerieExercicio" class="form-control" value=" placeholder="Digite a serie do exercicio" />
-                    @Html.ValidationMessageFor(x => x.SerieExercicio, "Digite a quantidade de séries", new { @Class="text-danger"})
+                    <label class="control-label">Observacoes</label>
+                    <input asp-for="Observacoes" class="form-control" placeholder="Digite as observações">
+                    @Html.ValidationMessageFor(x => x.Observacoes, "", new { @Class="text-danger"})
                 </div>
                 <div class="text-field">
-                    <label class="control-label" for="Perfil">Tipo de repetição</label>
-                    @Html.DropDownListFor(x => x.TipoRepeticaoID, new SelectList(ViewBag.RepeticaoExercicio, "TipoRepeticaoID", "TipoRepeticao", Model.TipoRepeticaoID), "-- Selecione --",new { @class = "form-select"})
-                    @Html.ValidationMessageFor(x => x.TipoRepeticaoID, "Escolha o tipo de repetição", new { @Class="text-danger"})
+                    <label class="control-label">Quantidade de semanas da ficha</label>
+                    <input asp-for="QuantidadeSemanas" class="form-control" value="" placeholder="Digite a quantidade" />
+                    @Html.ValidationMessageFor(x => x.QuantidadeSemanas, "Digite a quantidade de semanas", new { @Class="text-danger"})
                 </div>
-                <button class="btn-signin btn btn-outline-success">Inserir</button>
+                <div class="text-field">
+                    <label class="control-label" for="PessoaID">Pessoa destinada</label>
+                    @Html.DropDownListFor(x => x.PessoaID, new SelectList(ViewBag.Pessoa, "PessoaID", "Nome", Model.PessoaID), "-- Selecione --",new { @class = "form-select"})
+                    @Html.ValidationMessageFor(x => x.PessoaID, "Escolha a pessoa", new { @Class="text-danger"})
+                </div>
+                <button class="btn-signin btn btn-outline-primary">Cadastrar</button>
             </div>
         </div>
     </div>

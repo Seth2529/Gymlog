@@ -21,6 +21,12 @@ builder.Services.AddScoped<IPessoaCadastroService, PessoaCadastroService>();
 builder.Services.AddScoped<IExercicioRepository,ExercicioRepository>();
 builder.Services.AddScoped<IExercicioService, ExercicioService>();
 
+builder.Services.AddScoped<IHorarioRepository,HorarioRepository>();
+builder.Services.AddScoped<IHorarioService, HorarioService>();
+
+builder.Services.AddScoped<IFichaRepository,FichaRepository>();
+builder.Services.AddScoped<IFichaService, FichaService>();
+
 
 
 builder.Services.AddSession(o =>

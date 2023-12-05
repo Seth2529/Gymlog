@@ -62,7 +62,6 @@ namespace Gymlog.WebApp.Controllers
 
             return View(editarpessoaModel);
         }
-
         public IActionResult CadastrarPessoa(PessoaViewModel pessoa)
         {
 
@@ -123,6 +122,7 @@ namespace Gymlog.WebApp.Controllers
  
 
         }
+        [PaginaSomenteFuncionario]
         [HttpPost]
         public IActionResult EditarPessoa(PessoaViewModel pessoa)
         {

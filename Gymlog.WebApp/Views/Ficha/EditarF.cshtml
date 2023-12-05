@@ -1,5 +1,5 @@
 ﻿@using Gymlog.WebApp.Models;
-@model ExercicioViewModel
+@model FichaViewModel
 
 <style>
     body {
@@ -12,50 +12,16 @@
         margin-right: 185px;
     }
 
-    .main-signin {
+    .main-edit {
         width: 100vw;
-        height: 90vh;
+        height: 100vh;
         background: #212529;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    .left-signin {
-        width: 50vw;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-        .left-signin > h1 {
-            color: #ffffff;
-            font-weight: 800;
-            margin: 0;
-        }
-
-        .left-signin > h3 {
-            color: #FFFFFF;
-            font-weight: 100;
-            margin: 10px;
-        }
-
-    .left-signin-image {
-        width: 35vw;
-    }
-
-
-    .right-signin {
-        width: 50vw;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .card-signin {
+    .card-edit {
         width: 60%;
         display: flex;
         justify-content: center;
@@ -67,7 +33,7 @@
         box-shadow: 0px 10px 40px #242424;
     }
 
-        .card-signin > h1 {
+        .card-edit > h1 {
             color: #FFFFFF;
             font-weight: 800;
             margin: 0;
@@ -104,26 +70,30 @@
         color: #f0ffff94;
     }
 
-    .btn-signin {
+    .btn-edit {
         width: 100%;
         padding: 16px 0px;
-        margin: 25px;
+        margin-top: 15px;
         border: none;
         border-radius: 8px;
         outline: none;
         font-weight: 800;
         letter-spacing: 1px;
         color: #ffffff;
-        background: #30a444;
         cursor: pointer;
-        box-shadow: 0px 10px 40px -12px #2c7a3a;
+        box-shadow: 0px 10px 40px -12px #092b4d;
     }
 
     .error {
         color: red;
     }
+
 </style>
-<form asp-action="CadastrarExercicio" asp-controller="Exercicio" method="POST">
+
+
+<form asp-action="EditarFicha" asp-controller="Ficha" method="post">
+    <input type="hidden" asp-for=FichaID />
+
     <div class="alert-index">
         @if (TempData["MensagemSucesso"] != null)
         {
@@ -140,43 +110,49 @@
             </div>
         }
     </div>
-    <div class="main-signin">
-        <div class="left-signin">
-            <h1>Inserir Exercício</h1>
-            <h3>Descreva as informações do exercício</h3>
-            <img src="https://sabawellness.com.br/wp-content/uploads/2022/03/AdobeStock_SABA-WELLNESS-ACADEMIA-4-scaled.jpeg" alt="gym" class="left-signin-image">
+    <div class="main-edit">
+        <div class="card-edit">
+            <h1>Edite as informações da ficha</h1>
+        <div class="text-field">
+            <label class="control-label">Nome Ficha</label>
+            <input asp-for="NomeFicha" class="form-control" placeholder="Digite o nome da ficha">
+            @Html.ValidationMessageFor(x => x.NomeFicha, "", new { @Class="text-danger"})
         </div>
-        <div class="right-signin">
-            <div class="card-signin">
-                <h1>Exercício</h1>
-                <div class="text-field">
-                    <label class="control-label">Nome Exercício</label>
-                    <input asp-for="NomeExercicio" class="form-control" placeholder="Digite o nome do exercicio">
-                    @Html.ValidationMessageFor(x => x.NomeExercicio, "", new { @Class="text-danger"})
-                </div>
-                <div class="text-field">
-                    <label class="control-label">Serie Exercicio</label>
-                    <input asp-for="SerieExercicio" class="form-control" value=" placeholder="Digite a serie do exercicio" />
-                    @Html.ValidationMessageFor(x => x.SerieExercicio, "Digite a quantidade de séries", new { @Class="text-danger"})
-                </div>
-                <div class="text-field">
-                    <label class="control-label" for="Perfil">Tipo de repetição</label>
-                    @Html.DropDownListFor(x => x.TipoRepeticaoID, new SelectList(ViewBag.RepeticaoExercicio, "TipoRepeticaoID", "TipoRepeticao", Model.TipoRepeticaoID), "-- Selecione --",new { @class = "form-select"})
-                    @Html.ValidationMessageFor(x => x.TipoRepeticaoID, "Escolha o tipo de repetição", new { @Class="text-danger"})
-                </div>
-                <button class="btn-signin btn btn-outline-success">Inserir</button>
-            </div>
+        <div class="text-field">
+            <label class="control-label">Observacoes</label>
+            <input asp-for="Observacoes" class="form-control" placeholder="Digite as observações">
+            @Html.ValidationMessageFor(x => x.Observacoes, "", new { @Class="text-danger"})
+        </div>
+        <div class="text-field">
+            <label class="control-label">Quantidade de semanas da ficha</label>
+            <input asp-for="QuantidadeSemanas" class="form-control" placeholder="Digite a quantidade" />
+            @Html.ValidationMessageFor(x => x.QuantidadeSemanas, "Digite a quantidade de semanas", new { @Class="text-danger"})
+        </div>
+        <div class="text-field">
+            <label class="control-label" for="PessoaID">Pessoa destinada</label>
+            @Html.DropDownListFor(x => x.PessoaID, new SelectList(ViewBag.Pessoa, "PessoaID", "Nome", Model.PessoaID), "-- Selecione --",new { @class = "form-select"})
+            @Html.ValidationMessageFor(x => x.PessoaID, "Escolha a pessoa", new { @Class="text-danger"})
+        </div>
+            <button class="btn-edit btn btn-primary">Editar</button>
+        <button class="btn-edit btn btn-secondary" asp-controller="Ficha" asp-action="Index">Voltar</button>
+
         </div>
     </div>
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
     <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon="{&quot;rayId&quot;:&quot;80547d2a3def521b&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2023.8.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous" style="display: none !important;"></script>
 
+
     <script>
-        var e = document.getElementById("ddlViewBy");
-        var value = e.value;
-        var text = e.options[e.selectedIndex].text;
+        var val = document.getElementById('zoption_')
+        val.options[val.selectedIndex].value
+    </script>
+    <script>
+        $('#cpf').mask('000.000.000-00', { reverse: true });
     </script>
 </form>
+
+@*mvc ddd*@

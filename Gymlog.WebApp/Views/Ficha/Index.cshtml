@@ -1,7 +1,7 @@
-﻿@using Gymlog.Dominio.Entidade;
+﻿@using Gymlog.Dominio.ValueObjects;
 @using Gymlog.WebApp.Helper;
 
-@model IEnumerable<Horario>
+@model IEnumerable<Ficha>
 
 <style>
     body {
@@ -29,7 +29,7 @@
     .card-index {
         margin-left: 185px;
         margin-right: 185px;
-        width: 45%;
+        width: 70%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -67,47 +67,45 @@
 
 <div class="main-index">
     <div class="card-index">
-        <h1 class="display-4">Horários da academia</h1>
+        <h1 class="display-4">Listagem de pessoas</h1>
         <table class="table table-striped" id="tabela-geral">
             <thead class="table-dark">
                 <tr>
-                    <th>Horario de funcionamento</th>
-                    <th>Dia da semana</th>
-                    <th>Datas</th>
+                    <th>FichaID</th>
+                    <th>Nome da Ficha</th>
+                    <th>Observações</th>
+                    <th>Quantidade Semanas</th>
+                    <th>PessoaID</th>
                     <th></th>
                 </tr>
             </thead>
-            <tbody class="table table-striped">
+            <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
                         <td>
-                            @item.HorarioPadrao
+                            @item.FichaID
                         </td>
                         <td>
-                            @item.DiaDaSemana
+                            @item.NomeFicha
                         </td>
                         <td>
-                            @{
-                                if (item.DataFeriado.HasValue)
-                                {
-                                    @FeriadoHelper.ObterMensagemOculta(item.DataFeriado.Value)
-                                    ;
-                                }
-                                else
-                                {
-                                    <text>Data não disponível</text>
-                                }
-                            }
+                            @item.Observacoes
                         </td>
                         <td>
-                            <a type="button" class="btn btn-outline-primary role="button" asp-action="EditarH" asp-controller="Horario" asp-route-horarioID="@item.HorarioID">
+                            @item.QuantidadeSemanas
+                        </td>
+                        <td>
+                            @item.PessoaID
+                        </td>
+                        <td>
+                            <a type="button" class="btn btn-outline-primary role="button" asp-action="EditarF" asp-controller="Ficha" asp-route-fichaID="@item.FichaID">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                     <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
                                 </svg>
                                 Editar
                             </a>
-                            <a type="button" class="btn btn-outline-danger" role="button" asp-action="ApagarH" asp-controller="Horario" asp-route-horarioID="@item.HorarioID">
+                            <a type="button" class="btn btn-outline-danger" role="button" asp-action="Apagar" asp-controller="Ficha" asp-route-fichaID="@item.FichaID">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"></path>
                                 </svg>
