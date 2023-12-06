@@ -50,11 +50,9 @@ namespace Gymlog.WebApp.Controllers
                         }
                         TempData["MensagemErro"] = $"Senha inválida, tente novamente";
                     }
-
                     TempData["MensagemErro"] = $"CPF e/ou senha inválidos,Por favor, tente novamente";
-
                 }
-                return View();
+                return View("Index",loginModel);
             }
             catch (Exception erro)
             {
