@@ -136,7 +136,7 @@ namespace Gymlog.WebApp.Controllers
                     return RedirectToAction("Index");
 
                 }
-                return View("Editar", horario);
+                return View("EditarH", horario);
             }
             catch (System.Exception erro)
             {

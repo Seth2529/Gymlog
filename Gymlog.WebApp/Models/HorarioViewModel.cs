@@ -7,9 +7,9 @@ namespace Gymlog.WebApp.Models
     {
         public int HorarioID { get; set; }
 
-        [Required(ErrorMessage = "Coloque a sua data de nascimento")]
-        [DisplayFormat(NullDisplayText = "Coloque a sua data de nascimento")]
-        [IdadeValidation(90, ErrorMessage = "A idade máxima permitida é de 90 anos.")]
+        [Required(ErrorMessage = "Coloque a data do feriado")]
+        [DisplayFormat(NullDisplayText = "Coloque a data do feriado")]
+        [IdadeValidation(1, ErrorMessage = "Coloque a data correta para o proximo feriado.")]
         public DateTime? DataFeriado { get; set; }
         [Required(ErrorMessage = "Digite o dia da semana")]
         public string DiaDaSemana { get; set; }
